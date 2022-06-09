@@ -40,8 +40,10 @@
 
 <div class="rounds">
 <h2>Rounds</h2>
-<h3>Team 1</h3>
-<h3>Team 2</h3>
+<div class="rounds-container">
+  <h3 class="rounds-header-no">No</h3>
+<h3 class="rounds-header-team1">Team 1</h3>
+<h3 class="rounds-header-team2">Team 2</h3>
 <ul class="rounds-number">
   <li> 1</li>
 </ul>
@@ -49,16 +51,20 @@
   <li> 100</li>
 </ul>
 <ul class="rounds-point-team2">
-  <li> 100</li>
+  <li> 0</li>
 </ul>
 </div>
+</div>
+
 <div class="points">
   <h2>Choose your Victory Points</h2>
+  <div class="points-container">
   <div class="points-special">
     <button id="grand-tichu">Grand Tichu</button>
     <button id="small-tichu">Small Tichu</button>
     <button id="double-victory">Double Victory</button>
   </div>
+  <div class="points-cards">
   <div class="points-cards1">
     <button id="card1"></button>
     <button id="card2"></button>
@@ -78,8 +84,9 @@
     <button id="card14"></button>
   </div>
 </div>
+</div>
 
-
+</div>
   </div>
     
   <script src="script.js"></script>  
