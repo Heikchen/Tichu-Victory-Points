@@ -1,0 +1,52 @@
+:root{
+    --primary-grey-color: #d9d9d9;
+}
+h2{
+    font-family: 'Roboto', sans-serif;
+    font-size: 24px;
+    font-weight: 500;
+}
+h3{
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;  
+}
+li{
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;    
+}
+button{
+    font-family: 'Roboto', sans-serif;
+    border-radius: 8px;
+    border: none;
+    width: 100px;
+    height: 50px;  
+}
+.container{
+    max-width:1440px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-auto-rows: auto;
+    grid-template-areas: 
+    "team rounds"
+    "points points";
+    gap: 30px;
+}
+.team{
+grid-area: team;
+box-shadow: 0px 4px 20px var(--primary-grey-color);
+margin: 10px;
+padding: 15px;
+}
+.rounds{
+grid-area: rounds;
+box-shadow: 0px 4px 20px var(--primary-grey-color);
+margin: 10px;
+padding: 15px;
+}
+.points{
+grid-area: points;
+box-shadow: 0px 4px 20px var(--primary-grey-color);
+margin: 10px;
+padding: 15px;
+}
