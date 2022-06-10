@@ -12,31 +12,42 @@ let team2 = 0;
 let activeButtonTeam1;
 let activeButtonTeam2;
 
+
+const buttonClick = document.getElementsByClassName("team-button");
+for(let i = 0; i < buttonClick.length; i++){
+    buttonClick[i].addEventListener("click", function(event){  
+        let buttonTeam = event.target.value;
+            if (buttonTeam === "team1"){
+                activeButtonTeam1 = true;
+                activeButtonTeam2 = false;
+               }else if(buttonTeam === "team2"){
+                activeButtonTeam1 = false;
+                activeButtonTeam2 = true;}
+           console.log(activeButtonTeam1, activeButtonTeam2);
+           
+        })
+}
+
 const buttonPoints = document.getElementsByClassName("card");
-for(let i = 0; i < buttonPoints.length; i++){
-    buttonPoints[i].addEventListener("click", function(event){
-    const pointValue = event.target.value;
-    const pointValueNumber = parseInt(pointValue);
-console.log(pointValueNumber);
-})
+    for(let i = 0; i < buttonPoints.length; i++){
+        buttonPoints[i].addEventListener("click", function(event){
+        let pointValue = event.target.value;
+        let pointValueNumber = parseInt(pointValue);
+if (activeButtonTeam1 === true){
+    team1 = team1 + pointValueNumber;
+    console.log(team1, team2); 
+    }
+else { team2 = team2 + pointValueNumber
+        console.log(team1, team2);  } 
+    })
     }
 
-function scoringTeam1(){
-    const buttonTeam1 = document.getElementById("team1");
-     buttonTeam1.addEventListener('click', function(){
-        activeButtonTeam1 = true;
-        activeButtonTeam2 = false;
-        console.log(activeButtonTeam1,activeButtonTeam2)
-     })
-}
-function scoringTeam2(){
-    const buttonTeam2 = document.getElementById("team2");
-     buttonTeam2.addEventListener('click', function(){
-        activeButtonTeam1 = false;
-        activeButtonTeam2 = true;
-        console.log(activeButtonTeam1,activeButtonTeam2 )
-     })
-}
+
+
+
+
+
+    
 
 
 
