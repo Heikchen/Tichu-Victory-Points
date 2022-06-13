@@ -24,6 +24,7 @@ button{
     width: 100px;
     height: 50px;  
 }
+
 .container{
     max-width:1440px;
     margin: auto;
@@ -137,7 +138,7 @@ padding: 15px;
     justify-content: center;
 }
 
- .card1{
+ #card1{
 height: 150px;
 min-width: 110px;
 background-color: transparent;
@@ -145,7 +146,12 @@ background: url(assets/black-5.jpg);
 background-position: center;
 background-repeat: no-repeat;
  }   
- .card2{
+ .button-click{
+    background-color: var(--primary-grey-color);
+    opacity: 0.15;
+    
+}
+ #card2{
     height: 150px;
     min-width: 110px;
     background-color: transparent;
@@ -153,7 +159,7 @@ background-repeat: no-repeat;
     background-position: center;
     background-repeat: no-repeat;
 }   
-.card3{
+#card3{
     height: 150px;
     min-width: 110px;
     background-color: transparent;
@@ -161,7 +167,7 @@ background-repeat: no-repeat;
     background-position: center;
     background-repeat: no-repeat;
 } 
-.card4{
+#card4{
     height: 150px;
     min-width: 110px;
     background-color: transparent;
@@ -169,7 +175,7 @@ background-repeat: no-repeat;
     background-position: center;
     background-repeat: no-repeat;
 }
-.card5{
+#card5{
     height: 150px;
     min-width: 110px;
     background-color: transparent;
@@ -177,7 +183,7 @@ background-repeat: no-repeat;
     background-position: center;
     background-repeat: no-repeat;
 }  
-.card6{
+#card6{
     height: 150px;
     min-width: 110px;
     background-color: transparent;
@@ -185,7 +191,7 @@ background-repeat: no-repeat;
     background-position: center;
     background-repeat: no-repeat;
 }  
-.card7{
+#card7{
     height: 150px;
     min-width: 110px;
     background-color: transparent;
@@ -193,7 +199,7 @@ background-repeat: no-repeat;
     background-position: center;
     background-repeat: no-repeat;
 }
-.card8{
+#card8{
     height: 150px;
     min-width: 110px;
     background-color: transparent;
@@ -201,7 +207,7 @@ background-repeat: no-repeat;
     background-position: center;
     background-repeat: no-repeat;
 }
-.card9{
+#card9{
     height: 150px;
     min-width: 110px;
     background-color: transparent;
@@ -209,7 +215,7 @@ background-repeat: no-repeat;
     background-position: center;
     background-repeat: no-repeat;
 }
-.card10{
+#card10{
     height: 150px;
     min-width: 110px;
     background-color: transparent;
@@ -217,7 +223,7 @@ background-repeat: no-repeat;
     background-position: center;
     background-repeat: no-repeat;
 }
-.card11{
+#card11{
     height: 150px;
     min-width: 110px;
     background-color: transparent;
@@ -225,7 +231,7 @@ background-repeat: no-repeat;
     background-position: center;
     background-repeat: no-repeat;
 }
-.card12{
+#card12{
     height: 150px;
     min-width: 110px;
     background-color: transparent;
@@ -233,7 +239,7 @@ background-repeat: no-repeat;
     background-position: center;
     background-repeat: no-repeat;
 }
-.card13{
+#card13{
     height: 150px;
     min-width: 110px;
     background-color: transparent;
@@ -241,7 +247,7 @@ background-repeat: no-repeat;
     background-position: center;
     background-repeat: no-repeat;
 }
-.card14{
+#card14{
     height: 150px;
     min-width: 110px;
     background-color: transparent;
