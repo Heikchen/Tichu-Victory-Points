@@ -44,14 +44,11 @@
   <h3 class="rounds-header-no">No</h3>
 <h3 class="rounds-header-team1">Team 1</h3>
 <h3 class="rounds-header-team2">Team 2</h3>
-<ul class="rounds-number">
-  <li> 1</li>
+<ol id="rounds-number" class="rounds-number">
+</ol>
+<ul id="rounds-point-team1" class="rounds-point-team1">
 </ul>
-<ul class="rounds-point-team1">
-  <li> 100</li>
-</ul>
-<ul class="rounds-point-team2">
-  <li> 0</li>
+<ul id="rounds-point-team2" class="rounds-point-team2">
 </ul>
 </div>
 </div>
@@ -62,7 +59,7 @@
   <div class="points-special">
     <button value="200"id="grand-tichu">Grand Tichu</button>
     <button value="100"id="small-tichu">Small Tichu</button>
-    <button value="200"id="double-victory">Double Victory</button>
+    <button onclick="doubleVictoryButton()" id="double-victory">Double Victory</button>
   </div>
   <div class="points-cards">
   <button value= "5"  class="card" id="card1"></button>
