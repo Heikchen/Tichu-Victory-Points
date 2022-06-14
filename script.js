@@ -27,7 +27,7 @@ for (let i = 0; i < buttonClick.length; i++) {
     console.log(activeButtonTeam1, activeButtonTeam2);
   });
 }
-//add Points from cards to team
+//add Points from cards to team and starting new round
 const buttonPoints = document.getElementsByClassName("card");
 for (let i = 0; i < buttonPoints.length; i++) {
   buttonPoints[i].addEventListener("click", function (event) {
@@ -48,8 +48,6 @@ for (let i = 0; i < buttonPoints.length; i++) {
       buttonCards.classList.toggle("button-click");
     }
     if (
-      team1 !== 1000 &&
-      team2 !== 1000 &&
       document.getElementById("card1").classList.contains("button-click") &&
       document.getElementById("card2").classList.contains("button-click") &&
       document.getElementById("card3").classList.contains("button-click") &&
@@ -84,32 +82,189 @@ for (let i = 0; i < changeValueCards.length; i++) {
   });
 }
 
-let counterRounds = 0;
+const smallTichuBox = document.getElementById("small-tichu-box");
+const smallTichuSuccessful = document.getElementById("successful");
+const smallTichuUnsuccessful = document.getElementById("unsuccessful");
 
-function newRound() {
-  counterRounds++;
-  const counterRoundsString = counterRounds.toString();
-  const roundNumber = document.createElement("li");
-  const roundParent = document.getElementById("rounds-number");
-  roundNumber.innerText = counterRoundsString;
-  roundParent.appendChild(roundNumber);
-  const resultTeam1 = document.createElement("li");
-  const resultParent1 = document.getElementById("rounds-point-team1");
-  const team1String = team1.toString();
-  resultTeam1.innerText = team1String;
-  resultParent1.appendChild(resultTeam1);
-  const resultParent2 = document.getElementById("rounds-point-team2");
-  const resultTeam2 = document.createElement("li");
-  const team2String = team2.toString();
-  resultTeam2.innerText = team2String;
-  resultParent2.appendChild(resultTeam2);
+function smallTichu() {
+  smallTichuBox.style.display = "block";
 }
+
+function smallTichuSuccessfulClick() {
+  if (activeButtonTeam1 === true) {
+    team1 += 100;
+    console.log("successful");
+    smallTichuSuccessful.disabled = true;
+  } else if (activeButtonTeam2 === true) {
+    team2 += 100;
+    smallTichuSuccessful.disabled = true;
+  }
+
+  smallTichuBox.style.display = "none";
+}
+
+function smallTichuUnsuccessfulClick() {
+  if (activeButtonTeam1 === true) {
+    team1 -= 100;
+  } else if (activeButtonTeam2 === true) {
+    team2 -= 100;
+  }
+  smallTichuBox.style.display = "none";
+}
+
+window.addEventListener("click", function (event) {
+  if (event.target == smallTichuBox) {
+    smallTichuBox.style.display = "none";
+  }
+});
+
+const grandTichuBox = document.getElementById("grand-tichu-box");
+const grandTichuSuccessful = document.getElementById("grand-successful");
+const grandTichuUnsuccessful = document.getElementById("grand-unsuccessful");
+
+function grandTichu() {
+  grandTichuBox.style.display = "block";
+}
+
+function grandTichuSuccessfulClick() {
+  if (activeButtonTeam1 === true) {
+    team1 += 200;
+    grandTichuSuccessful.disabled = true;
+  } else if (activeButtonTeam2 === true) {
+    team2 += 200;
+    grandTichuSuccessful.disabled = true;
+  }
+  grandTichuBox.style.display = "none";
+}
+function grandTichuUnsuccessfulClick() {
+  if (activeButtonTeam1 === true) {
+    team1 -= 200;
+  } else if (activeButtonTeam2 === true) {
+    team2 -= 200;
+  }
+  grandTichuBox.style.display = "none";
+}
+
+window.addEventListener("click", function (event) {
+  if (event.target == grandTichuBox) {
+    grandTichuBox.style.display = "none";
+  }
+});
+
+//Double victory add 200 points and start new round
+const teamSelectionBox = document.getElementById("team-selection-box");
+const team1Selection = document.getElementById("team1-selection");
+const team2Selection = document.getElementById("team2-selection");
+
+function teamSelection() {
+  teamSelectionBox.style.display = "block";
+}
+
+function noTichu() {
+  newRound();
+  doubleVictoryBox.style.display = "none";
+}
+
+const doubleVictoryBox = document.getElementById("double-victory-box");
+const smallDoubleVictory = document.getElementById("small-tichu-button");
+const grandDoubleVictory = document.getElementById("grand-tichu-button");
 
 function doubleVictoryButton() {
   if (activeButtonTeam1 === true) {
     team1 += 200;
-  } else if (activeButtonTeam1 === false) {
+    doubleVictoryBox.style.display = "block";
+  } else if (activeButtonTeam2 === true) {
     team2 += 200;
+    doubleVictoryBox.style.display = "block";
   }
-  newRound();
+}
+
+function doubleVictorySmallTichu() {
+  teamSelection();
+  const teamSelectionButton =
+    document.getElementsByClassName("selection-button");
+  for (let i = 0; i < teamSelectionButton.length; i++) {
+    teamSelectionButton[i].addEventListener("click", function (event) {
+      const teamSelectionId = event.target.id;
+      if (teamSelectionId === "team1-selection") {
+        console.log(teamSelectionId);
+        activeButtonTeam1 = true;
+        activeButtonTeam2 = false;
+        teamSelectionBox.style.display = "none";
+        smallTichu();
+      } else if (teamSelectionId === "team2-selection") {
+        activeButtonTeam1 = false;
+        activeButtonTeam2 = true;
+        teamSelectionBox.style.display = "none";
+        smallTichu();
+      }
+    });
+  }
+}
+function doubleVictoryGrandTichu() {
+  teamSelection();
+  const teamSelectionButton =
+    document.getElementsByClassName("selection-button");
+  for (let i = 0; i < teamSelectionButton.length; i++) {
+    teamSelectionButton[i].addEventListener("click", function (event) {
+      const teamSelectionId = event.target.id;
+      if (teamSelectionId === "team1-selection") {
+        console.log(teamSelectionId);
+        activeButtonTeam1 = true;
+        activeButtonTeam2 = false;
+        teamSelectionBox.style.display = "none";
+        grandTichu();
+      } else if (teamSelectionId === "team2-selection") {
+        activeButtonTeam1 = false;
+        activeButtonTeam2 = true;
+        teamSelectionBox.style.display = "none";
+        grandTichu();
+      }
+    });
+  }
+}
+//creating new elements for rounds
+let counterRounds = 0;
+
+function newRound() {
+  if (team1 !== 1000 && team2 !== 1000) {
+    counterRounds++;
+    const counterRoundsString = counterRounds.toString();
+    const roundNumber = document.createElement("li");
+    const roundParent = document.getElementById("rounds-number");
+    roundNumber.innerText = counterRoundsString;
+    roundParent.appendChild(roundNumber);
+    const resultTeam1 = document.createElement("li");
+    const resultParent1 = document.getElementById("rounds-point-team1");
+    const team1String = team1.toString();
+    resultTeam1.innerText = team1String;
+    resultParent1.appendChild(resultTeam1);
+    const resultParent2 = document.getElementById("rounds-point-team2");
+    const resultTeam2 = document.createElement("li");
+    const team2String = team2.toString();
+    resultTeam2.innerText = team2String;
+    resultParent2.appendChild(resultTeam2);
+    smallTichuSuccessful.disabled = false;
+    grandTichuSuccessful.disabled = false;
+    activeButtonTeam1 = false;
+    activeButtonTeam2 = false;
+    document.getElementById("card1").classList.remove("button-click");
+    document.getElementById("card2").classList.remove("button-click");
+    document.getElementById("card3").classList.remove("button-click");
+    document.getElementById("card4").classList.remove("button-click");
+    document.getElementById("card5").classList.remove("button-click");
+    document.getElementById("card6").classList.remove("button-click");
+    document.getElementById("card7").classList.remove("button-click");
+    document.getElementById("card8").classList.remove("button-click");
+    document.getElementById("card9").classList.remove("button-click");
+    document.getElementById("card10").classList.remove("button-click");
+    document.getElementById("card11").classList.remove("button-click");
+    document.getElementById("card12").classList.remove("button-click");
+    document.getElementById("card13").classList.remove("button-click");
+    document.getElementById("card14").classList.remove("button-click");
+  } else if (team1 === 1000) {
+    alert(`Team 1 has won the game: ${team1}:${team2}`);
+  } else if (team2 === 1000) {
+    alert(`Team 2 has won the game: ${team1}:${team2}`);
+  }
 }
