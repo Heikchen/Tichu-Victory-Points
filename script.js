@@ -362,3 +362,19 @@ function cardsDisabledTeam2() {
     }
   }
 }
+
+function randomTeam() {
+  let name1 = document.getElementById("name1").value;
+  let name2 = document.getElementById("name2").value;
+  let name3 = document.getElementById("name3").value;
+  let name4 = document.getElementById("name4").value;
+  const nameArray = [name1, name2, name3, name4];
+  nameArray.sort(() => Math.random() - 0.5);
+  console.log(nameArray);
+  for (let i = 0; i < nameArray.length; i++) {
+    document.getElementById("name1").value = nameArray[0];
+    document.getElementById("name2").value = nameArray[1];
+    document.getElementById("name3").value = nameArray[2];
+    document.getElementById("name4").value = nameArray[3];
+  }
+}
