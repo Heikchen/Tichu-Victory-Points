@@ -1,12 +1,3 @@
-//Building Teams 4 inputs; Team 1 and Team2
-//Random Team Button
-//victory Points (5,10,king,dragon,phoenix) cards as buttons onclick:
-//gray and not clickable, add value to points of the Team
-//next round if nobody has reached 1000 points
-//round counter and bomb counter
-//reset button to start a new game
-
-//statistic of the same Teams
 let team1 = 0;
 let team2 = 0;
 let activeButtonTeam1;
@@ -24,6 +15,7 @@ for (let i = 0; i < buttonClick.length; i++) {
       activeButtonTeam1 = false;
       activeButtonTeam2 = true;
     }
+
     console.log(activeButtonTeam1, activeButtonTeam2);
   });
 }
@@ -66,6 +58,7 @@ for (let i = 0; i < buttonPoints.length; i++) {
     }
   });
 }
+
 //change Value in case of double click if a Team is selected
 const changeValueCards = document.getElementsByClassName("card");
 for (let i = 0; i < changeValueCards.length; i++) {
@@ -80,7 +73,7 @@ for (let i = 0; i < changeValueCards.length; i++) {
     }
   });
 }
-
+//small Tichu Button
 const smallTichuBox = document.getElementById("small-tichu-box");
 const smallTichuSuccessful = document.getElementById("successful");
 const smallTichuUnsuccessful = document.getElementById("unsuccessful");
@@ -108,7 +101,6 @@ function smallTichuClick() {
       }
     });
   }
-
   smallTichu();
 }
 
@@ -140,6 +132,7 @@ window.addEventListener("click", function (event) {
   }
 });
 
+//Grand Tichu Button
 const grandTichuBox = document.getElementById("grand-tichu-box");
 const grandTichuSuccessful = document.getElementById("grand-successful");
 const grandTichuUnsuccessful = document.getElementById("grand-unsuccessful");
@@ -222,8 +215,13 @@ function doubleVictoryButton() {
     doubleVictoryBox.style.display = "block";
   }
 }
-//Reset Game
+window.addEventListener("click", function (event) {
+  if (event.target == doubleVictoryBox) {
+    doubleVictoryBox.style.display = "none";
+  }
+});
 
+//Reset Game
 function clearCards() {
   document.getElementById("card1").classList.remove("button-click");
   document.getElementById("card1").value = "5";
@@ -295,6 +293,7 @@ function resetRound() {
   const team2actualroundNumber = parseInt(team2actualround);
   team2 = team2 - (team2LastRoundNumber - team2actualroundNumber);
 }
+
 //creating new elements for rounds
 let counterRounds = 0;
 
@@ -325,5 +324,41 @@ function newRound() {
     alert(`Team 1 has won the game: ${team1}:${team2}`);
   } else if (team2 === 1000) {
     alert(`Team 2 has won the game: ${team1}:${team2}`);
+  }
+}
+//diabled cards for each team which was choosen by the other one
+function cardsDisabledTeam1() {
+  const cardDisabled = document.querySelectorAll(
+    "#card1, #card2, #card3, #card4, #card5, #card6, #card7, #card8, #card9, #card10, #card11, #card12, #card13, #card14"
+  );
+  console.log(cardDisabled);
+  for (let i = 0; i < cardDisabled.length; i++) {
+    if (
+      !cardDisabled[i].classList.contains("team1-disabled") &&
+      cardDisabled[i].classList.contains("button-click")
+    ) {
+      cardDisabled[i].disabled = true;
+      cardDisabled[i].classList.add("team2-disabled");
+    } else {
+      cardDisabled[i].disabled = false;
+    }
+  }
+}
+
+function cardsDisabledTeam2() {
+  const cardDisabled = document.querySelectorAll(
+    "#card1, #card2, #card3, #card4, #card5, #card6, #card7, #card8, #card9, #card10, #card11, #card12, #card13, #card14"
+  );
+  console.log(cardDisabled);
+  for (let i = 0; i < cardDisabled.length; i++) {
+    if (
+      !cardDisabled[i].classList.contains("team2-disabled") &&
+      cardDisabled[i].classList.contains("button-click")
+    ) {
+      cardDisabled[i].disabled = true;
+      cardDisabled[i].classList.add("team1-disabled");
+    } else {
+      cardDisabled[i].disabled = false;
+    }
   }
 }
