@@ -34,8 +34,11 @@
   <button class="team-button scoring-team2" value = "team2" >Team 2</button>
 </div>
 </div>
+<div class="reset-button">
 <button id="random-team">Random</button>
-
+<button onclick="resetGame()" id="reset-game">Reset Game</button>
+<button id="reset-round">Reset Round</button>
+</div>
 </div>
 
 <div class="rounds">
@@ -57,8 +60,8 @@
   <h2>Choose your Victory Points</h2>
   <div class="points-container">
   <div class="points-special">
-    <button onclick="grandTichu()" id="grand-tichu">Grand Tichu</button>
-    <button  onclick="smallTichu()" id="small-tichu">Small Tichu</button>
+    <button onclick="grandTichuClick()" id="grand-tichu">Grand Tichu</button>
+    <button  onclick="smallTichuClick()" id="small-tichu">Small Tichu</button>
     <button onclick="doubleVictoryButton()" id="double-victory">Double Victory</button>
   </div>
   <div class="points-cards">
@@ -92,8 +95,8 @@
 </div>
 <div id="double-victory-box" class="double-victory-popup">
   <h2 id="double-victory-header">Tichu?</h2>
-  <button onclick="smallTichu()" id="small-tichu-button">Small Tichu</button>
-  <button onclick="grandTichu()"id="grand-tichu-button">Grand Tichu</button>
+  <button onclick="smallTichuClick()" id="small-tichu-button">Small Tichu</button>
+  <button onclick="grandTichuClick()"id="grand-tichu-button">Grand Tichu</button>
   <button onclick="noTichu()" id="no-tichu">Ready</button>
 </div>
 <div id="team-selection-box" class="team-selection-popup">
