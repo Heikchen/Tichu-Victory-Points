@@ -33,7 +33,6 @@ for (let i = 0; i < buttonPoints.length; i++) {
   buttonPoints[i].addEventListener("click", function (event) {
     let pointValue = event.target.value;
     let pointValueNumber = parseInt(pointValue);
-
     if (activeButtonTeam1 === true) {
       team1 = team1 + pointValueNumber;
       console.log(team1, team2);
@@ -227,38 +226,74 @@ function doubleVictoryButton() {
 
 function clearCards() {
   document.getElementById("card1").classList.remove("button-click");
+  document.getElementById("card1").value = "5";
   document.getElementById("card2").classList.remove("button-click");
+  document.getElementById("card2").value = "5";
   document.getElementById("card3").classList.remove("button-click");
+  document.getElementById("card3").value = "5";
   document.getElementById("card4").classList.remove("button-click");
+  document.getElementById("card4").value = "5";
   document.getElementById("card5").classList.remove("button-click");
+  document.getElementById("card5").value = "10";
   document.getElementById("card6").classList.remove("button-click");
+  document.getElementById("card6").value = "10";
   document.getElementById("card7").classList.remove("button-click");
+  document.getElementById("card7").value = "10";
   document.getElementById("card8").classList.remove("button-click");
+  document.getElementById("card8").value = "10";
   document.getElementById("card9").classList.remove("button-click");
+  document.getElementById("card9").value = "10";
   document.getElementById("card10").classList.remove("button-click");
+  document.getElementById("card10").value = "10";
   document.getElementById("card11").classList.remove("button-click");
+  document.getElementById("card11").value = "10";
   document.getElementById("card12").classList.remove("button-click");
+  document.getElementById("card12").value = "10";
   document.getElementById("card13").classList.remove("button-click");
+  document.getElementById("card13").value = "25";
   document.getElementById("card14").classList.remove("button-click");
+  document.getElementById("card14").value = "-25";
 }
+const resetGameNumber = document.getElementById("rounds-number");
+const resetGameTeam1 = document.getElementById("rounds-point-team1");
+const resetGameTeam2 = document.getElementById("rounds-point-team2");
+
 function resetGame() {
   clearCards();
   smallTichuSuccessful.disabled = false;
   grandTichuSuccessful.disabled = false;
   activeButtonTeam1 = false;
   activeButtonTeam2 = false;
-  const resetGameNumber = document.getElementById("rounds-number");
+
   while (resetGameNumber.firstChild) {
     resetGameNumber.removeChild(resetGameNumber.lastChild);
   }
-  const resetGameTeam1 = document.getElementById("rounds-point-team1");
+
   while (resetGameTeam1.firstChild) {
     resetGameTeam1.removeChild(resetGameTeam1.lastChild);
   }
-  const resetGameTeam2 = document.getElementById("rounds-point-team2");
+
   while (resetGameTeam2.firstChild) {
     resetGameTeam2.removeChild(resetGameTeam2.lastChild);
   }
+}
+
+//reset round
+function resetRound() {
+  newRound();
+  resetGameNumber.removeChild(resetGameNumber.lastChild);
+  const team1Lastround = resetGameTeam1.lastChild.innerHTML;
+  const team1LastRoundNumber = parseInt(team1Lastround);
+  resetGameTeam1.removeChild(resetGameTeam1.lastChild);
+  const team1actualround = resetGameTeam1.lastChild.innerHTML;
+  const team1actualroundNumber = parseInt(team1actualround);
+  team1 = team1 - (team1LastRoundNumber - team1actualroundNumber);
+  const team2Lastround = resetGameTeam2.lastChild.innerHTML;
+  const team2LastRoundNumber = parseInt(team2Lastround);
+  resetGameTeam2.removeChild(resetGameTeam2.lastChild);
+  const team2actualround = resetGameTeam2.lastChild.innerHTML;
+  const team2actualroundNumber = parseInt(team2actualround);
+  team2 = team2 - (team2LastRoundNumber - team2actualroundNumber);
 }
 //creating new elements for rounds
 let counterRounds = 0;
