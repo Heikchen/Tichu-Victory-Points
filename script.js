@@ -11,11 +11,12 @@ for (let i = 0; i < buttonClick.length; i++) {
     if (buttonTeam === "team1") {
       activeButtonTeam1 = true;
       activeButtonTeam2 = false;
+      document.getElementById("random-team").disabled = true;
     } else if (buttonTeam === "team2") {
       activeButtonTeam1 = false;
       activeButtonTeam2 = true;
+      document.getElementById("random-team").disabled = true;
     }
-
     console.log(activeButtonTeam1, activeButtonTeam2);
   });
 }
@@ -113,7 +114,6 @@ function smallTichuSuccessfulClick() {
     team2 += 100;
     smallTichuSuccessful.disabled = true;
   }
-
   smallTichuBox.style.display = "none";
 }
 
@@ -218,6 +218,7 @@ function doubleVictoryButton() {
 window.addEventListener("click", function (event) {
   if (event.target == doubleVictoryBox) {
     doubleVictoryBox.style.display = "none";
+    newRound();
   }
 });
 
@@ -262,6 +263,9 @@ function resetGame() {
   grandTichuSuccessful.disabled = false;
   activeButtonTeam1 = false;
   activeButtonTeam2 = false;
+  team1 = 0;
+  team2 = 0;
+  document.getElementById("random-team").disabled = false;
 
   while (resetGameNumber.firstChild) {
     resetGameNumber.removeChild(resetGameNumber.lastChild);
@@ -298,7 +302,7 @@ function resetRound() {
 let counterRounds = 0;
 
 function newRound() {
-  if (team1 !== 1000 && team2 !== 1000) {
+  if (team1 < 1000 && team2 < 1000) {
     counterRounds++;
     const counterRoundsString = counterRounds.toString();
     const roundNumber = document.createElement("li");
@@ -320,10 +324,8 @@ function newRound() {
     activeButtonTeam1 = false;
     activeButtonTeam2 = false;
     clearCards();
-  } else if (team1 === 1000) {
-    alert(`Team 1 has won the game: ${team1}:${team2}`);
-  } else if (team2 === 1000) {
-    alert(`Team 2 has won the game: ${team1}:${team2}`);
+  } else if (team1 >= 1000 || team2 >= 1000) {
+    whoIsTheWinner();
   }
 }
 //diabled cards for each team which was choosen by the other one
@@ -362,12 +364,12 @@ function cardsDisabledTeam2() {
     }
   }
 }
-
+//Random Team Button
+let name1 = document.getElementById("name1").value;
+let name2 = document.getElementById("name2").value;
+let name3 = document.getElementById("name3").value;
+let name4 = document.getElementById("name4").value;
 function randomTeam() {
-  let name1 = document.getElementById("name1").value;
-  let name2 = document.getElementById("name2").value;
-  let name3 = document.getElementById("name3").value;
-  let name4 = document.getElementById("name4").value;
   const nameArray = [name1, name2, name3, name4];
   nameArray.sort(() => Math.random() - 0.5);
   console.log(nameArray);
@@ -376,5 +378,32 @@ function randomTeam() {
     document.getElementById("name2").value = nameArray[1];
     document.getElementById("name3").value = nameArray[2];
     document.getElementById("name4").value = nameArray[3];
+  }
+}
+//Who is The winner
+const winnerBox = document.getElementById("winner-box");
+function closeWindow() {
+  winnerBox.style.display = "none";
+}
+
+function whoIsTheWinner() {
+  winnerBox.style.display = "block";
+  if (team1 > team2) {
+    document.getElementById(
+      "winner-header"
+    ).innerText = `Congrats ${name1} & ${name2} `;
+    document.getElementById(
+      "winner-text"
+    ).innerText = `You won by ${team1} : ${team2}`;
+  } else if (team1 < team2) {
+    document.getElementById(
+      "winner-header"
+    ).innerText = `Congrats ${name3} & ${name4} `;
+    document.getElementById(
+      "winner-text"
+    ).innerText = `You won by ${team1} : ${team2}`;
+  } else {
+    document.getElementById("winner-header").innerText = `It's a draw `;
+    document.getElementById("winner-text").innerText = `${team1} : ${team2}`;
   }
 }
