@@ -283,6 +283,7 @@ function clearCards() {
   document.getElementById("card14").classList.remove("button-click");
   document.getElementById("card14").value = "-25";
 }
+
 const resetGameNumber = document.getElementById("rounds-number");
 const resetGameTeam1 = document.getElementById("rounds-point-team1");
 const resetGameTeam2 = document.getElementById("rounds-point-team2");
@@ -316,8 +317,10 @@ function resetGame() {
 }
 
 //reset round
-function resetRound() {
-  newRound();
+function removeRound() {
+  if (counterRounds > 0) {
+    counterRounds--;
+  }
   resetGameNumber.removeChild(resetGameNumber.lastChild);
   const team1Lastround = resetGameTeam1.lastChild.innerHTML;
   const team1LastRoundNumber = parseInt(team1Lastround);
@@ -331,6 +334,24 @@ function resetRound() {
   const team2actualround = resetGameTeam2.lastChild.innerHTML;
   const team2actualroundNumber = parseInt(team2actualround);
   team2 = team2 - (team2LastRoundNumber - team2actualroundNumber);
+}
+
+function resetRound() {
+  if (activeButtonTeam1 === true || activeButtonTeam2 === true) {
+    newRound();
+    removeRound();
+  } else if (activeButtonTeam1 === false && activeButtonTeam2 === false) {
+    if (resetGameNumber.children.length === 1) {
+      team1 = 0;
+      team2 = 0;
+      counterRounds = 0;
+      resetGameNumber.removeChild(resetGameNumber.lastChild);
+      resetGameTeam1.removeChild(resetGameTeam1.lastChild);
+      resetGameTeam2.removeChild(resetGameTeam2.lastChild);
+    } else {
+      removeRound();
+    }
+  }
 }
 
 //creating new elements for rounds
